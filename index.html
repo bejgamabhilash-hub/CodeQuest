@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeQuest</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Welcome to CodeQuest!</h1>
+    <p>Learn coding through fun maze challenges.</p>
+    <hr>
+<h2>👋 Enter Your Name</h2>
+
+<input type="text" id="playerName" placeholder="Enter your name">
+
+<button onclick="startGame()">Start Game</button>
+
+<p id="welcomeMessage"></p>
+<h2>🎮 How to Play CodeQuest</h2>
+
+<p>Welcome, young coder! Your mission is to guide the robot to the treasure.</p>
+
+<h3>Instructions:</h3>
+
+<p>1. Choose your difficulty level.</p>
+<p>2. Use the arrow buttons to move the robot.</p>
+<p>3. Add commands to create a sequence.</p>
+<p>4. Predict where the robot will move.</p>
+<p>5. Find and correct mistakes in the debugging challenge.</p>
+<p>6. Reach the treasure and earn points!</p>
+
+<p>🧠 Think carefully, plan your moves, and have fun coding!</p>
+    <button onclick="alert('Your first maze challenge is coming soon!')">
+    Start Game
+    </button>
+<h2>Maze Challenge</h2>
+
+<h3>Select Your Level</h3>
+
+<select id="levelSelect" onchange="changeLevel()">
+    <option value="easy">Easy</option>
+    <option value="medium">Medium</option>
+    <option value="hard">Hard</option>
+</select>
+
+<p>Moves: <span id="moveCount">0</span></p>
+<p>Score: <span id="score">0</span></p>
+<p>Help the robot reach the treasure!</p>
+<div id="maze">
+
+    <div id="robot">🤖</div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <div></div>
+    <div class="wall">🧱</div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <div></div>
+    <div class="wall">🧱</div>
+    <div></div>
+    <div class="wall">🧱</div>
+    <div></div>
+
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <div></div>
+    <div class="wall">🧱</div>
+    <div></div>
+    <div></div>
+    <div>⭐</div>
+
+</div>
+</div>
+
+<h2>Robot Controls</h2>
+
+<div class="controls">
+    <button onclick="moveRobot(-1, 0)">⬆ Forward</button>
+    <button onclick="moveRobot(1, 0)">⬇ Backward</button>
+    <button onclick="moveRobot(0, -1)">⬅ Left</button>
+    <button onclick="moveRobot(0, 1)">➡ Right</button>
+</div>
+<div id="winScreen" style="display: none;">
+
+    <h2>🏆 Congratulations!</h2>
+
+    <h3>You completed CodeQuest!</h3>
+    <p id="winnerMessage"></p>
+
+    <p>You are a coding champion! 🎉</p>
+
+    <p>Your Final Score:</p>
+
+    <h2 id="finalScore">0</h2>
+
+    <button onclick="resetGame()">
+        Play Again
+    </button>
+
+</div>
+
+<hr>
+
+<h2>🧩 Level 2: Learn Loops</h2>
+
+<p>Learn how to repeat commands using loops!</p>
+<h3>🔁 Repeat a Command</h3>
+
+<label>Choose a command:</label>
+
+<select id="loopCommand">
+    <option value="forward">⬆ Forward</option>
+    <option value="backward">⬇ Backward</option>
+    <option value="left">⬅ Left</option>
+    <option value="right">➡ Right</option>
+</select>
+
+<label>How many times?</label>
+
+<select id="loopCount">
+    <option value="2">2 times</option>
+    <option value="3">3 times</option>
+    <option value="4">4 times</option>
+    <option value="5">5 times</option>
+</select>
+
+<button onclick="runLoop()">Run Loop</button>
+
+<p id="loopResult"></p>
+<p>
+    💡 A loop repeats the same command several times.
+    Instead of writing the same command again and again,
+    you can use a loop!
+</p>
+<hr>
+
+<h3>🧠 Loop Challenge</h3>
+
+<p>The robot needs to move 3 steps forward.</p>
+
+<p>Which loop should you choose?</p>
+
+<select id="loopAnswer">
+    <option value="">Choose your answer</option>
+    <option value="2">Repeat 2 times</option>
+    <option value="3">Repeat 3 times</option>
+    <option value="4">Repeat 4 times</option>
+</select>
+
+<button onclick="checkLoopAnswer()">Check Answer</button>
+
+<p id="loopChallengeResult"></p>
+<hr>
+
+<h2>🧠 Level 3: Learn Conditions</h2>
+
+<p>Teach your robot how to make decisions!</p>
+<h3>🤖 Teach Your Robot to Decide</h3>
+
+<p>What should the robot do if it finds a wall?</p>
+
+<select id="conditionChoice">
+    <option value="">Choose an action</option>
+    <option value="left">Turn Left</option>
+    <option value="right">Turn Right</option>
+    <option value="forward">Move Forward</option>
+</select>
+
+<button onclick="checkCondition()">Check Condition</button>
+
+<p id="conditionResult"></p>
+<hr>
+
+<h2>🏆 CodeQuest Leaderboard</h2>
+
+<ol id="leaderboard">
+    <li>No players yet. Be the first!</li>
+</ol>
+<hr>
+
+<h3>📊 Your Progress</h3>
+
+<div class="progress-container">
+    <div id="progressBar">0%</div>
+</div>
+<h2>Build Your Commands</h2>
+
+<p>Select commands and make the robot reach the treasure!</p>
+
+<div class="command-buttons">
+    <button onclick="addCommand('up')">⬆ Forward</button>
+    <button onclick="addCommand('down')">⬇ Backward</button>
+    <button onclick="addCommand('left')">⬅ Left</button>
+    <button onclick="addCommand('right')">➡ Right</button>
+</div>
+<h3>🎴 Drag Your Commands</h3>
+
+<div id="dragCommands">
+    <div class="drag-command" draggable="true" data-command="up">⬆ Forward</div>
+    <div class="drag-command" draggable="true" data-command="down">⬇ Backward</div>
+    <div class="drag-command" draggable="true" data-command="left">⬅ Left</div>
+    <div class="drag-command" draggable="true" data-command="right">➡ Right</div>
+</div>
+
+<p>Drag commands into your coding area below!</p>
+
+<div id="dropArea">
+    Drop your commands here
+</div>
+<button onclick="runDraggedCommands()">▶ Run My Code</button>
+
+<button onclick="clearDraggedCommands()">🗑 Clear Code</button>
+
+<p id="dragResult"></p>
+<h3>Your Command Sequence</h3>
+
+<div id="commandList">
+    No commands selected yet.
+</div>
+<h3>🤔 Think Before You Execute</h3>
+
+<p>Where do you think the robot will reach?</p>
+
+<label>Choose Row:</label>
+<select id="predictionRow">
+    <option value="">Select Row</option>
+    <option value="0">Row 1</option>
+    <option value="1">Row 2</option>
+    <option value="2">Row 3</option>
+    <option value="3">Row 4</option>
+    <option value="4">Row 5</option>
+</select>
+
+<label>Choose Column:</label>
+<select id="predictionCol">
+    <option value="">Select Column</option>
+    <option value="0">Column 1</option>
+    <option value="1">Column 2</option>
+    <option value="2">Column 3</option>
+    <option value="3">Column 4</option>
+    <option value="4">Column 5</option>
+</select>
+<button onclick="checkPrediction()">Check My Prediction</button>
+
+<p id="predictionResult"></p>
+
+<hr>
+
+<h3>🐞 Debugging Challenge</h3>
+
+<p>Find the incorrect command!</p>
+
+<p>The robot starts at Row 1, Column 1.</p>
+
+<p>Target: Row 1, Column 4</p>
+
+<div>
+    <p>1. ➡ Right</p>
+    <p>2. ⬇ Backward</p>
+    <p>3. ➡ Right</p>
+</div>
+
+<p>Which command should be corrected?</p>
+
+<select id="wrongCommand">
+    <option value="">Select your answer</option>
+    <option value="1">Command 1</option>
+    <option value="2">Command 2</option>
+    <option value="3">Command 3</option>
+</select>
+
+<button onclick="checkDebugging()">
+    Check My Answer
+</button>
+
+<p id="debugResult"></p>
+
+<button onclick="runCommands()">▶ Run Commands</button>
+
+<button onclick="clearCommands()">Clear</button>
+<button onclick="resetGame()">🔄 Reset Game</button>
+
+<script src="script.js"></script>
+</body>
+</html>
